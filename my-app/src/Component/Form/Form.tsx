@@ -12,16 +12,18 @@ import Stack from "@mui/material/Stack";
 
 interface IForm {
   singleDetails?: any;
-  onclick: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 export default function Form(props: IForm) {
+  const { onClick } = props;
   const { singleDetails } = props;
   const { id, title } = singleDetails ?? "";
 
   const [UpdateTitle, setUpdateTitle] = useState(title);
   const Dispatch = useDispatch();
-  const handleClick = () => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     if (UpdateTitle?.length === 0 || UpdateTitle === null) {
       alert("Invalid title");
       return;
@@ -31,7 +33,7 @@ export default function Form(props: IForm) {
       Dispatch(AddList({ title: UpdateTitle }));
     }
 
-    props.onclick();
+    // props.onclick();
   };
 
   return (
@@ -50,7 +52,7 @@ export default function Form(props: IForm) {
 
       <div className="footer">
         <Stack spacing={2} direction="row">
-          <Button variant="outlined" onClick={props.onclick}>
+          <Button variant="outlined" onClick={onClick}>
             Cancel
           </Button>
           <Button variant="outlined" onClick={handleClick}>

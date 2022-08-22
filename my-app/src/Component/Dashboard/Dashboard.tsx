@@ -71,7 +71,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      {showForm && <Form singleDetails={singleDetails} onclick={closeBox} />}
+      {showForm && <Form singleDetails={singleDetails} onClick={closeBox} />}
       <div className="row_header">
         <Button variant="outlined" onClick={addNewList}>
           Add New
