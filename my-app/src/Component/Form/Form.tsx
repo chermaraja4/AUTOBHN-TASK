@@ -21,16 +21,16 @@ export default function Form(props: IForm) {
   const { id, title } = singleDetails ?? "";
 
   const [UpdateTitle, setUpdateTitle] = useState(title);
-  const Dispatch = useDispatch();
+  const dispatch = useDispatch();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (UpdateTitle?.length === 0 || UpdateTitle === null) {
       alert("Invalid title");
       return;
     } else if (id) {
-      Dispatch(EditUser({ id: id, title: UpdateTitle }));
+      dispatch(EditUser({ id: id, title: UpdateTitle }));
     } else {
-      Dispatch(AddList({ title: UpdateTitle }));
+      dispatch(AddList({ title: UpdateTitle }));
     }
 
     // props.onclick();
@@ -42,6 +42,7 @@ export default function Form(props: IForm) {
         id="outlined-basic"
         label="Title"
         variant="outlined"
+        placeholder="Title"
         value={UpdateTitle || ""}
         onChange={(e) => {
           const { value } = e.target;

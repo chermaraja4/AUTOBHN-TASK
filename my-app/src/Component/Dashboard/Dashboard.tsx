@@ -42,7 +42,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function Dashboard() {
-  const Dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [showForm, setShowForm] = React.useState(false);
   const userList: any = useSelector<reducerState, IReadyUserList>(
     (state) => state.User.userDetails
@@ -61,7 +61,7 @@ export default function Dashboard() {
     setShowForm(false);
   };
   const dropUser = (id: number) => {
-    Dispatch(DeleteUser({ id: id }));
+    dispatch(DeleteUser({ id: id }));
   };
 
   const addNewList = () => {
@@ -73,11 +73,11 @@ export default function Dashboard() {
     <div>
       {showForm && <Form singleDetails={singleDetails} onClick={closeBox} />}
       <div className="row_header">
-        <Button variant="outlined" onClick={addNewList}>
+        <Button variant="outlined" onClick={addNewList} title="btn">
           Add New
         </Button>
 
-        <div>Total list:{tableData.length}</div>
+        <div title="total_list">Total list:{tableData.length}</div>
       </div>
 
       <TableContainer component={Paper} sx={{ maxHeight: 600 }}>
